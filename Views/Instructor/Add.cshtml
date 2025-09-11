@@ -1,0 +1,61 @@
+﻿@model AddInstructorViewModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add Instructor</h1>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="SaveAdd" asp-controller="Instructor" method="post">
+    <div>
+        <label>Name</label>
+        <input type="text" value="@Model.Name" id="Name" name="Name" class="form form-control" />
+    </div>
+    <div>
+        <label>Salary</label>
+        <input type="number" value="@Model.Salary" id="Salary" name="Salary" class="form form-control" />
+    </div>
+    <div>
+        <label>Image</label>
+        <input type="text" value="@Model.Image" id="Image" name="Image" class="form form-control" />
+    </div>
+    <div>
+        <label>Address</label>
+        <input type="text" value="@Model.Address" id="Address" name="Address" class="form form-control" />
+    </div>
+    <div>
+        <label>Department</label>
+        <select id="DeptId" name="DeptId" class="form form-control">
+            @foreach (var deptItem in Model.Department)
+            {
+                if (Model.DeptId == deptItem.Id)
+                {
+                    <option value="@deptItem.Id" selected>@deptItem.Name</option>
+                }
+                else
+                {
+                    <option value="@deptItem.Id">@deptItem.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <label>Course</label>
+        <select id="CrsId" name="CrsId" class="form form-control">
+            @foreach (var crsItem in Model.Course)
+            {
+                if (Model.CrsId == crsItem.Id)
+                {
+                    <option value="@crsItem.Id" selected>@crsItem.Name</option>
+                }
+                else
+                {
+                    <option value="@crsItem.Id">@crsItem.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
